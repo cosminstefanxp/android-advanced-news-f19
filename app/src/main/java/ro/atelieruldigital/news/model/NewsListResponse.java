@@ -5,7 +5,7 @@ import java.util.List;
 public class NewsListResponse {
     private String status;
     private int totalResults;
-    private List<Article> articles;
+    private List<ArticleResponse> articlesResponse;
 
     public String getStatus() {
         return status;
@@ -15,7 +15,7 @@ public class NewsListResponse {
         return totalResults;
     }
 
-    public List<Article> getArticles() {
-        return articles;
+    public List<ArticleResponse> getArticles() {
+        return articlesResponse;
     }
 }
