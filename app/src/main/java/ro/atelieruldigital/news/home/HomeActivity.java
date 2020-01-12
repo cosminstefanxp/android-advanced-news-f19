@@ -1,6 +1,9 @@
 package ro.atelieruldigital.news.home;
 
 import android.os.Bundle;
+import android.widget.TextView;
+
+import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +24,12 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
 
         getDataFromServer();
+
+    }
+
+    private void initView(String string) {
+        TextView textView = findViewById(R.id.textViewProba);
+        textView.setText(string);
     }
 
     private void getDataFromServer() {
@@ -32,7 +41,7 @@ public class HomeActivity extends BaseActivity {
 
         call.enqueue(new Callback<ArticleResponse>() {
             @Override
-            public void onResponse(Call<ArticleResponse> call, Response<ArticleResponse> response) {
+            public void onResponse(@NotNull Call<ArticleResponse> call, @NotNull Response<ArticleResponse> response) {
                 if (response.body() != null) {
                     ArticleResponse articleResponse = response.body();
 
@@ -40,6 +49,7 @@ public class HomeActivity extends BaseActivity {
                     System.out.println(articleResponse.getStatus());
                     System.out.println(articleResponse.getTotalResults());
                     System.out.println(articleResponse.getArticles());
+                    initView(articleResponse.getArticles().get(2).getDescription());
 //                    System.out.println(articleResponse.getArticles().get(0).getArticleURL());
 //                    System.out.println(articleResponse.getArticles().get(2).getAuthor());
 //                    System.out.println(articleResponse.getArticles().get(3).getContent());
@@ -47,7 +57,7 @@ public class HomeActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call call, Throwable t) {
+            public void onFailure(@NotNull Call call, @NotNull Throwable t) {
                 Timber.e(t, "Failed to get data:");
                 System.out.println("Fail to GET data");
 
