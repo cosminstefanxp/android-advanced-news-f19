@@ -44,6 +44,6 @@ public class NewsWebService {
 
         @GET("/v2/everything")
         Call<NewsListResponse> queryArticles(@Query("q") String searchString,
-                                             @Query("apiKey") String apiKey);
+                                             @Query("apikey") String apiKey);
     }
 }

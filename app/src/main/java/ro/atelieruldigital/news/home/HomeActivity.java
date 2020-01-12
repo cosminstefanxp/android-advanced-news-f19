@@ -25,28 +25,28 @@ public class HomeActivity extends BaseActivity {
     private void getDataFromServer() {
         NewsWebService newsWebService = new NewsWebService();
         Call<NewsListResponse> newsListResponseCall = newsWebService.queryArticles("bitcoin");
-//        newsListResponseCall.enqueue(new Callback<NewsListResponse>() {
-//            @Override
-//            public void onResponse(Call<NewsListResponse> call, Response<NewsListResponse> response) {
-//                System.out.println("print: " + response.body().getStatus());
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<NewsListResponse> call, Throwable t) {
-//                System.out.println("failure: " );
-//
-//            }
-//        });
+        newsListResponseCall.enqueue(new Callback<NewsListResponse>() {
+            @Override
+            public void onResponse(Call<NewsListResponse> call, Response<NewsListResponse> response) {
+                System.out.println("print: " + response.body().getStatus());
 
-        try {
-            Response<NewsListResponse> response = newsListResponseCall.execute();
-            NewsListResponse newsListResponse = response.body();
-            System.out.println("response: " + response.body().getStatus());
+            }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            @Override
+            public void onFailure(Call<NewsListResponse> call, Throwable t) {
+                System.out.println("failure: " );
+
+            }
+        });
+
+//        try {
+//            Response<NewsListResponse> response = newsListResponseCall.execute();
+//            NewsListResponse newsListResponse = response.body();
+//            System.out.println("response: " + response.body().getStatus());
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }

@@ -1,5 +1,7 @@
 package ro.atelieruldigital.news.model;
 
+import androidx.room.Embedded;
+
 public class Article {
     Source source;
     String author;
