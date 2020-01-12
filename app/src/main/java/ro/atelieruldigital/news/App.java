@@ -1,6 +1,7 @@
 package ro.atelieruldigital.news;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
