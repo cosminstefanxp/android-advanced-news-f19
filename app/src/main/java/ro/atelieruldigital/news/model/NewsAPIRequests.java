@@ -1,11 +1,10 @@
-package ro.atelieruldigital.news.model.ws;
+package ro.atelieruldigital.news.model;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import ro.atelieruldigital.news.model.ArticleResponse;
 
-public interface NewsAPIService {
+public interface NewsAPIRequests {
     // TODO: Add functionality according to API
     // TODO: To be used as Retrofit's API
 

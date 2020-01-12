@@ -2,15 +2,16 @@ package ro.atelieruldigital.news.home;
 
 import android.os.Bundle;
 
-import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 import ro.atelieruldigital.news.R;
 import ro.atelieruldigital.news.core.BaseActivity;
-import ro.atelieruldigital.news.model.NewsListResponse;
-import ro.atelieruldigital.news.model.ws.NewsWebService;
+import ro.atelieruldigital.news.model.ArticleResponse;
+import ro.atelieruldigital.news.model.NewsAPIRequests;
+import ro.atelieruldigital.news.model.WebService.NewsWebService;
+import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity {
 
@@ -23,30 +24,34 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void getDataFromServer() {
-        NewsWebService newsWebService = new NewsWebService();
-        Call<NewsListResponse> newsListResponseCall = newsWebService.queryArticles("bitcoin");
-//        newsListResponseCall.enqueue(new Callback<NewsListResponse>() {
-//            @Override
-//            public void onResponse(Call<NewsListResponse> call, Response<NewsListResponse> response) {
-//                System.out.println("print: " + response.body().getStatus());
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<NewsListResponse> call, Throwable t) {
-//                System.out.println("failure: " );
-//
-//            }
-//        });
+        Retrofit newsWebServiceRetrofit = NewsWebService.getRetrofitClient();
+        NewsAPIRequests newsAPIRequests = newsWebServiceRetrofit.create(NewsAPIRequests.class);
 
-        try {
-            Response<NewsListResponse> response = newsListResponseCall.execute();
-            NewsListResponse newsListResponse = response.body();
-            System.out.println("response: " + response.body().getStatus());
+        Call<ArticleResponse> call = newsAPIRequests.queryArticles("apple", "2019-12-12", "2020-01-03",
+                "popularity", "4b3b375b6f9e462b8513e1471c5428b9");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        call.enqueue(new Callback<ArticleResponse>() {
+            @Override
+            public void onResponse(Call<ArticleResponse> call, Response<ArticleResponse> response) {
+                if (response.body() != null) {
+                    ArticleResponse articleResponse = response.body();
 
+                    System.out.println("ESTE K XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    System.out.println(articleResponse.getStatus());
+                    System.out.println(articleResponse.getTotalResults());
+                    System.out.println(articleResponse.getArticles());
+//                    System.out.println(articleResponse.getArticles().get(0).getArticleURL());
+//                    System.out.println(articleResponse.getArticles().get(2).getAuthor());
+//                    System.out.println(articleResponse.getArticles().get(3).getContent());
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Timber.e(t, "Failed to get data:");
+                System.out.println("Fail to GET data");
+
+            }
+        });
     }
 }
