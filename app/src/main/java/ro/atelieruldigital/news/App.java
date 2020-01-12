@@ -24,6 +24,7 @@ public class App extends Application {
 
         AndroidThreeTen.init(this);
 
+
         Timber.d("App has initialized...");
 
         init();
