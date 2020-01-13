@@ -3,7 +3,12 @@ package ro.atelieruldigital.news.home;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -14,9 +19,12 @@ import ro.atelieruldigital.news.core.BaseActivity;
 import ro.atelieruldigital.news.model.ArticleResponse;
 import ro.atelieruldigital.news.model.NewsAPIRequests;
 import ro.atelieruldigital.news.model.WebService.NewsWebService;
+import ro.atelieruldigital.news.recycler_view.CustomAdapter;
 import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity {
+
+    ArrayList<ArticleResponse.Article> mArticles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +32,12 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
 
         getDataFromServer();
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        setRecyclerView();
 
     }
 
@@ -54,6 +68,9 @@ public class HomeActivity extends BaseActivity {
 //                    System.out.println(articleResponse.getArticles().get(0).getArticleURL());
 //                    System.out.println(articleResponse.getArticles().get(2).getAuthor());
 //                    System.out.println(articleResponse.getArticles().get(3).getContent());
+
+                    mArticles = articleResponse.getArticles();
+                    setRecyclerView();
                 }
             }
 
@@ -64,5 +81,13 @@ public class HomeActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private void setRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        CustomAdapter customAdapter = new CustomAdapter(mArticles);
+        recyclerView.setAdapter(customAdapter);
+
     }
 }
