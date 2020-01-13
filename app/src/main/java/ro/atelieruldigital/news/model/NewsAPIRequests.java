@@ -12,6 +12,6 @@ public interface NewsAPIRequests {
     Call<ArticleResponse> queryArticles(@Query("q") String searchString,
                                         @Query("from") String from,
                                         @Query("to") String to,
-                                        @Query("SortBy") String sort,
+                                        @Query("sortBy") String sort,
                                         @Query("apiKey") String apiKey);
 }

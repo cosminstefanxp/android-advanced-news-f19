@@ -36,12 +36,13 @@ public class HomeActivity extends BaseActivity {
         Retrofit newsWebServiceRetrofit = NewsWebService.getRetrofitClient();
         NewsAPIRequests newsAPIRequests = newsWebServiceRetrofit.create(NewsAPIRequests.class);
 
-        Call<ArticleResponse> call = newsAPIRequests.queryArticles("apple", "2019-12-12", "2020-01-03",
-                "popularity", "4b3b375b6f9e462b8513e1471c5428b9");
+        Call<ArticleResponse> call = newsAPIRequests.queryArticles("apple", "2020-01-12", "2020-01-12",
+                "popularity", "534a091354c14911aa44a800e5270924");
 
         call.enqueue(new Callback<ArticleResponse>() {
             @Override
             public void onResponse(@NotNull Call<ArticleResponse> call, @NotNull Response<ArticleResponse> response) {
+
                 if (response.body() != null) {
                     ArticleResponse articleResponse = response.body();
 
