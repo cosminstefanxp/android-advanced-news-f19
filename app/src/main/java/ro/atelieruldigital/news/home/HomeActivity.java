@@ -1,5 +1,6 @@
 package ro.atelieruldigital.news.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import ro.atelieruldigital.news.App;
 import ro.atelieruldigital.news.R;
 import ro.atelieruldigital.news.core.BaseActivity;
 import ro.atelieruldigital.news.model.ArticleResponse;
@@ -84,10 +86,18 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void setRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        RecyclerView verticalRecyclerView = findViewById(R.id.vertical_recycler_view);
+        verticalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.VERTICAL, false));
         CustomAdapter customAdapter = new CustomAdapter(mArticles);
-        recyclerView.setAdapter(customAdapter);
+        verticalRecyclerView.setAdapter(customAdapter);
 
+        RecyclerView horizontalRecyclerView  = findViewById(R.id.horizontal_recycler_view);
+//        horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+//        CustomAdapter customAdapter1 = new CustomAdapter(mArticles);
+//        horizontalRecyclerView.setAdapter(customAdapter1);
     }
+
+//    public Context getHomeActivityContext () {
+//        return this;
+//    }
 }
