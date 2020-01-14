@@ -1,8 +1,6 @@
 package ro.atelieruldigital.news.home;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,18 +32,6 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
 
         getDataFromServer();
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        setRecyclerView();
-
-    }
-
-    private void initView(String string) {
-        TextView textView = findViewById(R.id.textViewProba);
-        textView.setText(string);
     }
 
     private void getDataFromServer() {
@@ -61,16 +47,6 @@ public class HomeActivity extends BaseActivity {
 
                 if (response.body() != null) {
                     ArticleResponse articleResponse = response.body();
-
-                    System.out.println("ESTE K XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                    System.out.println(articleResponse.getStatus());
-                    System.out.println(articleResponse.getTotalResults());
-                    System.out.println(articleResponse.getArticles());
-                    initView(articleResponse.getArticles().get(2).getDescription());
-//                    System.out.println(articleResponse.getArticles().get(0).getArticleURL());
-//                    System.out.println(articleResponse.getArticles().get(2).getAuthor());
-//                    System.out.println(articleResponse.getArticles().get(3).getContent());
-
                     mArticles = articleResponse.getArticles();
                     setRecyclerView();
                 }
@@ -90,14 +66,5 @@ public class HomeActivity extends BaseActivity {
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.VERTICAL, false));
         CustomAdapter customAdapter = new CustomAdapter(mArticles);
         verticalRecyclerView.setAdapter(customAdapter);
-
-        RecyclerView horizontalRecyclerView  = findViewById(R.id.horizontal_recycler_view);
-//        horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-//        CustomAdapter customAdapter1 = new CustomAdapter(mArticles);
-//        horizontalRecyclerView.setAdapter(customAdapter1);
     }
-
-//    public Context getHomeActivityContext () {
-//        return this;
-//    }
 }

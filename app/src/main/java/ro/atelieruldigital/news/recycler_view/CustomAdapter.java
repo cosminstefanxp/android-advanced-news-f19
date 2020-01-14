@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import ro.atelieruldigital.news.App;
 import ro.atelieruldigital.news.R;
-import ro.atelieruldigital.news.home.HomeActivity;
 import ro.atelieruldigital.news.model.ArticleResponse;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
@@ -25,13 +24,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CustomViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_news_card,
+        return new CustomViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.horizontal_layout_news_card,
                 parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.mTextView.setText(mArticleList.get(position).getAuthor());
+//        holder.mTextView.setText(mArticleList.get(position).getAuthor());
         holder.mHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.HORIZONTAL, false));
         CustomAdapter customAdapter = new CustomAdapter(mArticleList);
         holder.mHorizontalRecyclerView.setAdapter(customAdapter);
