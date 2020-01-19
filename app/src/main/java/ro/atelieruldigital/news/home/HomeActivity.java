@@ -1,6 +1,9 @@
 package ro.atelieruldigital.news.home;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,5 +69,14 @@ public class HomeActivity extends BaseActivity {
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.VERTICAL, false));
         CustomAdapter customAdapter = new CustomAdapter(mArticles);
         verticalRecyclerView.setAdapter(customAdapter);
+    }
+
+    public void onBackPressed() {
+        Timber.d("onBackPressed Called");
+        Toast.makeText(this,"Back button pressed. Exit App",Toast.LENGTH_LONG).show();
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
     }
 }
