@@ -19,19 +19,28 @@ import ro.atelieruldigital.news.core.BaseActivity;
 import ro.atelieruldigital.news.model.ArticleResponse;
 import ro.atelieruldigital.news.model.NewsAPIRequests;
 import ro.atelieruldigital.news.model.WebService.NewsWebService;
-import ro.atelieruldigital.news.recycler_view.CustomAdapter;
+import ro.atelieruldigital.news.recycler_view.CustomVerticalAdapter;
 import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity {
 
     ArrayList<ArticleResponse.Article> mArticles;
+    ArrayList<String> mPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        setPreferencesListForTest();
         getDataFromServer();
+    }
+
+    private void setPreferencesListForTest() {
+        mPreferences = new ArrayList<>();
+        mPreferences.add("sport");
+        mPreferences.add("fotbal");
+        mPreferences.add("masini");
     }
 
     private void getDataFromServer() {
@@ -64,7 +73,7 @@ public class HomeActivity extends BaseActivity {
     private void setRecyclerView() {
         RecyclerView verticalRecyclerView = findViewById(R.id.vertical_recycler_view);
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.VERTICAL, false));
-        CustomAdapter customAdapter = new CustomAdapter(mArticles);
-        verticalRecyclerView.setAdapter(customAdapter);
+        CustomVerticalAdapter customVerticalAdapter = new CustomVerticalAdapter(mArticles, mPreferences);
+        verticalRecyclerView.setAdapter(customVerticalAdapter);
     }
 }
