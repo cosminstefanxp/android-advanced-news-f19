@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "207256080100",
+    "firebase_url": "https://android-advanced-news-f19.firebaseio.com",
+    "project_id": "android-advanced-news-f19",
+    "storage_bucket": "android-advanced-news-f19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207256080100:android:bf42bc946b1107f203e6f1",
+        "android_client_info": {
+          "package_name": "ro.atelieruldigital.news"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207256080100-os1smje9ck84qjg6ufbl98iphfkbbpr5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ro.atelieruldigital.news",
+            "certificate_hash": "f12f36ad3cdbf188df34f09e68c47346c1554b12"
+          }
+        },
+        {
+          "client_id": "207256080100-4pee0q2bi0rn2klrugus82pemanmu3l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNyyxHEu4TU5BnWdoH0dtr_n0hJUUvEV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207256080100-4pee0q2bi0rn2klrugus82pemanmu3l0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
